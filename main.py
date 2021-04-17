@@ -1,12 +1,16 @@
 import pytesseract as tess
+import glob
+import cv2
 
 tess.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-import cv2
 
 finaltxt = []
 
-for a in range(1, 88):
-    img = cv2.imread('Cropped/%s.jpg' %a)
+# for a in range(1, 88):
+
+
+for im in glob.glob("Terms and Condition/Cropped/*.jpg"):
+    img = cv2.imread(im)
     txt = tess.pytesseract.image_to_string(img)
     lst = txt.splitlines()
 
@@ -18,19 +22,8 @@ for a in range(1, 88):
 # for z in range(len(finaltxt)):
 #     print(finaltxt[z])
 
-with open('List.txt', 'w') as f:
-    [f.write("%s\n" % item) for item in finaltxt]
+# with open('List.txt', 'w') as f:
+#     [f.write("%s\n" % item) for item in finaltxt]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+print('\n'.join(finaltxt))
