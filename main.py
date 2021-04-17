@@ -9,7 +9,7 @@ finaltxt = []
 # for a in range(1, 88):
 
 
-for im in glob.glob("Terms and Condition/Cropped/*.jpg"):
+for im in glob.glob("Biopod/Cropped/*.jpg"):
     img = cv2.imread(im)
     txt = tess.pytesseract.image_to_string(img)
     lst = txt.splitlines()
@@ -25,5 +25,7 @@ for im in glob.glob("Terms and Condition/Cropped/*.jpg"):
 # with open('List.txt', 'w') as f:
 #     [f.write("%s\n" % item) for item in finaltxt]
 
-
-print('\n'.join(finaltxt))
+fulltext = '\n'.join(finaltxt)
+with open("Biopod.txt", "w") as output:
+    output.write(fulltext)
+    print("successfully saved!")
